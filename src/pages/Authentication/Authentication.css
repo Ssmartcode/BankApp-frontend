@@ -1,0 +1,7 @@
+.switch-mode > strong {
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.active-mode {
+  color: rgb(245, 84, 84);
+}
