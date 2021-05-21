@@ -1,6 +1,12 @@
+a {
+}
+nav {
+  background: #333;
+}
 .nav-link {
-  color: #f4f4f4;
+  color: #f4f4f4 !important;
   font-size: 1.2rem;
+  font-weight: 500;
 }
 .nav-link:hover {
   color: #f4f4f4;

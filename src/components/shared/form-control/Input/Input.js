@@ -12,10 +12,10 @@ const Input = (props) => {
   const inputRef = useRef();
 
   // optional arguments for validation
-  const { minLength = 0, maxLength = 9999 } = props;
+  const { minLength = 0, maxLength = 9999, minValue = 0.01 } = props;
 
   useEffect(() => {
-    const validatorArguments = { minLength, maxLength };
+    const validatorArguments = { minLength, maxLength, minValue };
     // check if input is valid for every validator sent on props
     const validationResult = validators.every((validator) =>
       validator(inputValue, validatorArguments)
@@ -33,6 +33,7 @@ const Input = (props) => {
     validationState,
     minLength,
     maxLength,
+    minValue,
     onChange,
   ]);
 

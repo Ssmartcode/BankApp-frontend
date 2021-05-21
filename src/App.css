@@ -1,6 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 html,
 body,
 #root,
 #root > div {
   height: 100%;
+}
+body {
+  background-color: #f4f4f4;
+  background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-3.png");
+}
+.modal {
+  background: #333;
+  border-radius: 5px;
+  color: #f4f4f4;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: fit-content;
+  width: fit-content;
+  padding: 2rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#modal {
+  background: #333;
 }

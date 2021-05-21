@@ -8,16 +8,21 @@ import "./Header.css";
 const Header = () => {
   const authContext = useContext(AuthenticationContext);
   return (
-    <nav class="nav justify-content-center bg-secondary p-4 ">
+    <nav className="nav justify-content-center p-2 ">
       <Link to="/" className="nav-link">
         Acasa
       </Link>
 
       {/* if user is logged in */}
       {authContext.token && (
-        <Link to="/dashboard" className="nav-link">
-          Panou
-        </Link>
+        <React.Fragment>
+          <Link to="/dashboard" className="nav-link">
+            Panou
+          </Link>
+          <Link to="/" className="nav-link" onClick={authContext.logOut}>
+            LogOut
+          </Link>
+        </React.Fragment>
       )}
 
       {/* if user is NOT logged in */}

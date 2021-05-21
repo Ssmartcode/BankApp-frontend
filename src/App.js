@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // pages
 import Authentication from "./pages/Authentication/Authentication";
@@ -9,6 +9,7 @@ import Header from "./components/shared/Header/Header";
 import AuthContext from "./context/AuthContext";
 //css
 import "./App.css";
+import Landing from "./pages/Landing/Landing";
 
 const App = () => {
   const [token, setToken] = useState(null);
@@ -18,11 +19,23 @@ const App = () => {
   const logIn = useCallback((token, userData) => {
     setToken(token);
     setUserData(userData);
+    localStorage.setItem("token", token);
+    localStorage.setItem("userData", JSON.stringify(userData));
   }, []);
+
   const logOut = useCallback(() => {
     setToken(null);
     setUserData({});
+    localStorage.removeItem("token");
+    localStorage.removeItem("userData");
   }, []);
+
+  // get token and user data from local storage
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    if (token && userData) logIn(token, userData);
+  }, [logIn]);
 
   return (
     <React.Fragment>
@@ -31,7 +44,7 @@ const App = () => {
           <Header />
           <Switch>
             <Route path="/" exact>
-              <h1>Hello world</h1>
+              <Landing />
             </Route>
             <Route path="/authentication">
               <Authentication />

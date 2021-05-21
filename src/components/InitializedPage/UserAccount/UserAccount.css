@@ -1,0 +1,21 @@
+.user-account {
+  background: #f4f4f4;
+  color: #333;
+  border-radius: 3px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+  margin: 1rem 0;
+}
+.title {
+  padding: 1rem 0;
+}
+.bg-standard {
+  background: #ccc;
+  color: #333;
+}
+.bg-business {
+  background: #333;
+  color: #fff;
+}
+.account-content {
+  padding: 1rem 0.5rem;
+}

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 // components
-import Input from "../../components/shared/Input/Input";
+import Input from "../../components/shared/form-control/Input/Input";
 import Alert from "../../components/shared/Alert/Alert";
 // context
 import AuthContext from "../../context/AuthContext";
@@ -9,6 +9,7 @@ import useFormValidation from "../../hooks/useFormValidation";
 import useFetch from "use-http";
 // css
 import "./Authentication.css";
+import Spinner from "../../components/shared/Spinner/Spinner";
 
 const Authentication = () => {
   const [userName, setUserName] = useState("");
@@ -20,9 +21,7 @@ const Authentication = () => {
   const [httpResponse, setHttpResponse] = useState("");
 
   const { validators, validationState, allInputsValid } = useFormValidation();
-  const { post, response, loading, error } = useFetch(
-    process.env.REACT_APP_BACKEND
-  );
+  const { post, loading, error } = useFetch(process.env.REACT_APP_BACKEND);
   const authContext = useContext(AuthContext);
 
   // input validators
@@ -41,7 +40,6 @@ const Authentication = () => {
   // form submit handler
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log(isSignupMode);
     if (isSignupMode && allInputsValid(validationState.current)) {
       const httpResponse = await post("/users/signup", {
         userName,
@@ -61,22 +59,25 @@ const Authentication = () => {
     }
   };
   return (
-    <div className="d-flex justify-content-center align-items-center flex-column h-100 container">
-      <div className="switch-mode">
+    <div className="h-100 col-12 col-lg-6 px-2 mx-auto">
+      {/* SWITCHES -- LOGIN/SIGNUP */}
+      <div className="switch-mode mb-3 text-center mt-5 ">
         <strong
           className={!isSignupMode ? "active-mode" : ""}
           onClick={handleSwitchMode}
         >
-          Login
+          Autentificare
         </strong>
         /
         <strong
           className={isSignupMode ? "active-mode" : ""}
           onClick={handleSwitchMode}
         >
-          Signup
+          Inregistrare
         </strong>
       </div>
+
+      {/* signup mode */}
       {isSignupMode && (
         <form onSubmit={handleFormSubmit}>
           <Input
@@ -85,8 +86,8 @@ const Authentication = () => {
             onChange={setUserName}
             validators={[isRequired]}
             validationState={validationState}
-            errorMessage="Is required"
-            label="User Name:"
+            errorMessage="Acest camp este necesar"
+            label="Nume utilizator"
           />
           <Input
             type="text"
@@ -94,8 +95,8 @@ const Authentication = () => {
             onChange={setUserEmail}
             validators={[isRequired, isEmail]}
             validationState={validationState}
-            errorMessage="This is not a valid e-mai address"
-            label="User Email:"
+            errorMessage="Adresa de e-mail nu este valida"
+            label="Adresa de e-mail:"
           />
           <Input
             type="number"
@@ -103,8 +104,8 @@ const Authentication = () => {
             onChange={setUserAge}
             validators={[isRequired]}
             validationState={validationState}
-            errorMessage="Is required"
-            label="User Age:"
+            errorMessage="Acest camp este necesar"
+            label="Varsta utilizator:"
           />
           <Input
             type="password"
@@ -112,12 +113,14 @@ const Authentication = () => {
             onChange={setUserPassword}
             validators={[isRequired, isPassword]}
             validationState={validationState}
-            errorMessage="Your password is not valid"
-            label="User Password:"
+            errorMessage="Parola nu este valida"
+            label="Parola utilizator:"
           />
-          <button className="btn btn-primary">Submit</button>
+          <button className="btn btn-primary w-100">Submit</button>
         </form>
       )}
+
+      {/* login mode */}
       {!isSignupMode && (
         <form onSubmit={handleFormSubmit}>
           <Input
@@ -138,9 +141,13 @@ const Authentication = () => {
             errorMessage="Your password is not valid"
             label="User Password:"
           />
-          <button className="btn btn-primary">Submit</button>
+          <button className="btn btn-primary w-100">Submit</button>
         </form>
       )}
+
+      {/* loading spinner */}
+      {loading && <Spinner />}
+
       {/* alert with response or error from request */}
       {httpResponse ? (
         <Alert type={error ? "danger" : "success"} className="my-4">

@@ -5,7 +5,9 @@ const validators = {
     return input.length > 0;
   },
   isPassword: function (input) {
-    return input.length > 7 && /[A-Z].*\d|\d.*[A-Z]/.test(input);
+    // const passwordPattern = /[A-Z].*\d|\d.*[A-Z]/.test(input);
+    const passwordPattern = true;
+    return input.length > 0 && passwordPattern;
   },
   isEmail: function (input) {
     const emailRegex =
@@ -17,6 +19,9 @@ const validators = {
   },
   isMaxLength: function (input, args) {
     return input.length <= args.maxLength;
+  },
+  isGreaterThan: function (input, args) {
+    return input > args.minValue;
   },
 };
 
