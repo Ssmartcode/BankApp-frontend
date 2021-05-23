@@ -10,7 +10,7 @@ import Modal from "react-modal";
 import AuthContext from "../../context/AuthContext";
 // css
 import "./InitializedPage.css";
-import CreateAccount from "../../components/shared/CreateAccount/CreateAccount";
+import CreateAccount from "../../components/InitializedPage/CreateAccount/CreateAccount";
 
 const InitializedPage = () => {
   Modal.setAppElement("#modal");
@@ -20,7 +20,6 @@ const InitializedPage = () => {
   const { loading, get } = useFetch(process.env.REACT_APP_BACKEND, {
     headers: {
       Authorization: `Bearer ${authContext.token}`,
-      "Cache-Control": "no-cache",
     },
   });
 
@@ -29,19 +28,9 @@ const InitializedPage = () => {
     const { userId } = authContext.userData;
     (async () => {
       const response = await get(`/users/${userId}`);
-      console.log(response.userData);
       setUserData(response.userData);
     })();
   }, [get, authContext]);
-
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  const handleModalOpen = () => {
-    setModalIsOpen(true);
-  };
-  const handleModalClose = () => {
-    setModalIsOpen(false);
-  };
 
   return (
     <React.Fragment>
@@ -69,20 +58,7 @@ const InitializedPage = () => {
       )}
 
       {/* open new account button--opens a modal */}
-      <div className="">
-        <button className="btn btn-secondary" onClick={handleModalOpen}>
-          Deschide un cont nou
-        </button>
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={handleModalClose}
-          contentLabel="Add to deposit modal"
-          className="modal"
-          style={{ overlay: { background: "rgba(0,0,0,0.5)" } }}
-        >
-          <CreateAccount closeModal={handleModalClose} />
-        </Modal>
-      </div>
+      <CreateAccount />
 
       {/* Spinner */}
       {loading && <Spinner />}

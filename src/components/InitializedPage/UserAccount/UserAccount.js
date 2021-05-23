@@ -3,7 +3,7 @@ import React, { useEffect, useState, useContext } from "react";
 import Spinner from "../../shared/Spinner/Spinner";
 import currencyMap from "./currencyMap";
 import DepositMoney from "../DepositMoney/DepositMoney";
-import DeleteAccount from "../DeleteAccount/DeleteAccount";
+import TransferMoney from "../TransferMoney/TransferMoney";
 // hooks
 import useFetch from "use-http";
 // context
@@ -11,6 +11,8 @@ import AuthContext from "../../../context/AuthContext";
 // css
 import "./UserAccount.css";
 import WithdrawMoney from "../WithdrawMoney/WithdrawMoney";
+import { Link } from "react-router-dom";
+import transactionsHistory from "./transactionsLog.png";
 
 const UserAccount = (props) => {
   const authContext = useContext(AuthContext);
@@ -41,19 +43,31 @@ const UserAccount = (props) => {
       >
         Cont {accountInfo.accountType}
       </div>
-      <div className="account-content">
-        <div className="deposit">
-          Sold:{"\t"}
-          {accountInfo.accountDeposit}
-          {"\t"}
-          <strong>{currencyMap[accountInfo.accountCurrency]}</strong>
+      <div className="account-content row  g-0">
+        <div className="iban col-12 p-3">
+          <strong>IBAN: </strong>
+          {accountInfo.accountIBAN}
+        </div>
+        <div className="deposit col-6 py-2 bg-secondary text-light d-flex align-items-center justify-content-center">
+          <span className="me-1">Sold:</span>
+          <strong>{accountInfo.accountDeposit}</strong>
+          {currencyMap[accountInfo.accountCurrency]}
+        </div>
+        <div className="transactions-history col-6 py-2">
+          <Link to={`/transactions/${accountInfo._id}`}>
+            <img src={transactionsHistory} alt="2 files" /> Istoric tranzactii
+          </Link>
         </div>
       </div>
       <div className="account-actions">
         <div className="row g-0">
           <DepositMoney accountId={props.accountId} />
           <WithdrawMoney accountId={props.accountId} />
-          <DeleteAccount accountId={props.accountId} />
+          <TransferMoney
+            accountId={props.accountId}
+            accountIBAN={accountInfo.accountIBAN}
+            accounts={props.accounts}
+          />
         </div>
       </div>
     </div>

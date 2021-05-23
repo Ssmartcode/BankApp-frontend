@@ -7,15 +7,23 @@
 }
 .title {
   padding: 1rem 0;
+  font-size: 1.2rem;
 }
 .bg-standard {
-  background: #ccc;
+  background: rgb(209, 202, 121);
   color: #333;
 }
 .bg-business {
-  background: #333;
+  background: rgb(56, 66, 80);
   color: #fff;
 }
-.account-content {
-  padding: 1rem 0.5rem;
+.deposit {
+  font-size: 1.1rem;
+}
+.transactions-history img {
+  width: 40px;
+}
+.transactions-history a {
+  text-decoration: none;
+  color: inherit;
 }

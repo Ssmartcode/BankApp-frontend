@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import "./DepositMoney.css";
 import Input from "../../shared/form-control/Input/Input";
 import useFormValidation from "../../../hooks/useFormValidation";
 import useFetch from "use-http";
@@ -7,14 +6,16 @@ import AuthContext from "../../../context/AuthContext";
 import Modal from "react-modal";
 import Spinner from "../../shared/Spinner/Spinner";
 import Alert from "../../shared/Alert/Alert";
-import depositImg from "./deposit.png";
+import transferImg from "./transfer.png";
+import Select from "../../shared/form-control/Select/Select";
 
-const DepositMoney = (props) => {
+const TransferMoney = (props) => {
   Modal.setAppElement("#modal");
   // context
   const authContext = useContext(AuthContext);
 
-  const [deposit, setDeposit] = useState(0);
+  const [transferAmount, setTransferAmount] = useState(0);
+  const [destinationIBAN, setDestinationIBAN] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const [httpResponse, setHttpResponse] = useState("");
@@ -26,7 +27,7 @@ const DepositMoney = (props) => {
     }
   );
   const { validators, validationState } = useFormValidation();
-  const { isGreaterThan } = validators;
+  const { isGreaterThan, isRequired } = validators;
 
   // handle modal open/close
   const handleModalClose = () => {
@@ -38,54 +39,71 @@ const DepositMoney = (props) => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const httpResponse = await post("/accounts/deposit/" + props.accountId, {
-      depositAmount: deposit,
+    const httpResponse = await post("/accounts/transfer", {
+      accountId: props.accountId,
+      transferAmount,
+      destinationIBAN,
     });
+    // if no errors then submit the form
     if (response.ok) {
       e.target.submit();
     }
+    // if there are errors set the httpResponse
     setHttpResponse(httpResponse.message);
   };
   return (
     <div className="col-6 col-lg-4">
       <button
-        className="btn btn-primary w-100 rounded-0"
+        className="btn btn-light w-100 rounded-0"
         onClick={handleModalOpen}
       >
-        <img src={depositImg} alt="DEPOSIT" className="button-img" /> Deposit
+        <img src={transferImg} alt="" className="button-img" />
+        Transfera
       </button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={handleModalClose}
-        contentLabel="Add to deposit modal"
+        contentLabel="Transfer modal"
         className="modal"
         style={{ overlay: { background: "rgba(0,0,0,0.5)" } }}
       >
         <form className="text-center" onSubmit={handleFormSubmit}>
-          <h2>Adauga in cont:</h2>
+          <h2>Transfera suma catre un alt cont:</h2>
+          <fieldset disabled>
+            <input
+              type="text"
+              className="form-control mb-2 text-center"
+              value={`Din contul: ${props.accountIBAN}`}
+            />
+          </fieldset>
           <Input
             type="number"
-            id="userAge"
-            onChange={setDeposit}
+            id="transferAmount"
+            onChange={setTransferAmount}
             validators={[isGreaterThan]}
             minValue={1}
             validationState={validationState}
             errorMessage="Acest camp este necesar"
-            label="Adauga in cont:"
+            label="Transfera suma:"
+          />
+          <Input
+            type="text"
+            id="transferTo"
+            onChange={setDestinationIBAN}
+            validators={[isRequired]}
+            validationState={validationState}
+            errorMessage="Acest camp este necesar"
+            label="IBAN destinatar:"
           />
           <button className="btn btn-primary mt-3 w-100" type="submit">
-            Adauga
+            Transfer
           </button>
-          {/* spinner */}
           {loading && <Spinner />}
-          {/* error if any */}
-          {!response.ok && error && (
-            <Alert className="mt-4">{httpResponse}</Alert>
-          )}
+          {error && <Alert className="mt-4">{httpResponse}</Alert>}
         </form>
       </Modal>
     </div>
   );
 };
 
-export default DepositMoney;
+export default TransferMoney;

@@ -11,10 +11,10 @@ import Input from "../../components/shared/form-control/Input/Input";
 import Select from "../../components/shared/form-control/Select/Select";
 import Spinner from "../../components/shared/Spinner/Spinner";
 import UserInfo from "../../components/shared/UserInfo/UserInfo";
-
+import ImageUpload from "../../components/shared/ImageUpload/ImageUpload";
 // css
 import "./UninitializedPage.css";
-import ImageUpload from "../../components/shared/ImageUpload/ImageUpload";
+import previewImage from "./preview-image.jpg";
 
 const UninitializedPage = (props) => {
   const [fullName, setFullName] = useState("");
@@ -80,9 +80,9 @@ const UninitializedPage = (props) => {
     setHttpResponse(httpResponse);
   };
   return (
-    <React.Fragment>
-      <p>Se pare ca e pentru prima oara cand foloseti acest cont</p>
-      <p>Haideti sa facem setarile initiale:</p>
+    <div className="py-5">
+      <h4>Se pare ca e pentru prima oara cand foloseti acest cont</h4>
+      <h4>Haideti sa facem setarile initiale:</h4>
       <form onSubmit={handleFormSubmit} className="mx-auto">
         <Select
           id="accountType"
@@ -99,14 +99,10 @@ const UninitializedPage = (props) => {
           defaultValue="ron"
         />
         {/* Card with user informations such as profile image, name, phone */}
-        <UserInfo
-          isForm
-          imagePreview={imagePreview}
-          userName={authContext.userData.userName}
-        >
+        <UserInfo isForm imagePreview={imagePreview || previewImage}>
           {/* If inputs are needed send them as children */}
           <React.Fragment>
-            <div className="user-fullName d-flex align-items-center ">
+            <div className="user-fullName d-flex align-items-center ps-2">
               <p>Nume si Prenume:</p>
               <Input
                 type="text"
@@ -118,7 +114,7 @@ const UninitializedPage = (props) => {
                 label="Nume si Prenume"
               />
             </div>
-            <div className="user-phone d-flex align-items-center">
+            <div className="user-phone d-flex align-items-center ps-2">
               <p>Numar de telefon:</p>
               <Input
                 type="number"
@@ -148,7 +144,7 @@ const UninitializedPage = (props) => {
           {httpResponse.message}
         </Alert>
       ) : null}
-    </React.Fragment>
+    </div>
   );
 };
 

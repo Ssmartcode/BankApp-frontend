@@ -10,6 +10,7 @@ import AuthContext from "./context/AuthContext";
 //css
 import "./App.css";
 import Landing from "./pages/Landing/Landing";
+import TransactionsHistory from "./pages/TransactionsHistory/TransactionsHistory";
 
 const App = () => {
   const [token, setToken] = useState(null);
@@ -32,8 +33,12 @@ const App = () => {
 
   // get token and user data from local storage
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const userData = JSON.parse(localStorage.getItem("userData"));
+    let token;
+    let userData;
+    try {
+      token = localStorage.getItem("token");
+      userData = JSON.parse(localStorage.getItem("userData"));
+    } catch (err) {}
     if (token && userData) logIn(token, userData);
   }, [logIn]);
 
@@ -49,10 +54,18 @@ const App = () => {
             <Route path="/authentication">
               <Authentication />
             </Route>
-            <Route path="/dashboard">
-              <Dashboard />
-            </Route>
           </Switch>
+          {/* if token is available render these components */}
+          {token && (
+            <Switch>
+              <Route path="/dashboard">
+                <Dashboard />
+              </Route>
+              <Route path="/transactions/:accountId">
+                <TransactionsHistory />
+              </Route>
+            </Switch>
+          )}
         </AuthContext.Provider>
       </Router>
     </React.Fragment>

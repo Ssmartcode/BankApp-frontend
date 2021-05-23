@@ -7,7 +7,6 @@ import AuthContext from "../../context/AuthContext";
 import "./Dashboard.css";
 const Dashboard = () => {
   const authContext = useContext(AuthContext);
-
   const [isInitialized, setIsInitialized] = useState(
     authContext.userData.isInitialized
   );
@@ -18,7 +17,7 @@ const Dashboard = () => {
 
   // user data from context
   return (
-    <div className="container text-center">
+    <div className="container text-center py-4">
       {/* Not initialized user */}
       {!isInitialized && <UninitializedPage />}
 

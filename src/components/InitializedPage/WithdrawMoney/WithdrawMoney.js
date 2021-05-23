@@ -6,6 +6,7 @@ import AuthContext from "../../../context/AuthContext";
 import Modal from "react-modal";
 import Spinner from "../../shared/Spinner/Spinner";
 import Alert from "../../shared/Alert/Alert";
+import withdrawImg from "./withdraw.png";
 
 const WithdrawMoney = (props) => {
   Modal.setAppElement("#modal");
@@ -52,6 +53,7 @@ const WithdrawMoney = (props) => {
         className="btn btn-warning w-100 rounded-0"
         onClick={handleModalOpen}
       >
+        <img src={withdrawImg} alt="" className="button-img" />
         Retrage
       </button>
       <Modal

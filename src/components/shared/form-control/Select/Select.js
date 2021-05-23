@@ -6,6 +6,7 @@ const Select = (props) => {
   const [selectValue, setSelectValue] = useState(props.defaultValue);
   const { onChange } = props;
 
+  console.log(props.options);
   useEffect(() => {
     onChange(selectValue);
   }, [selectValue, onChange]);
@@ -25,8 +26,8 @@ const Select = (props) => {
         value={selectValue}
       >
         {props.options.map((option) => (
-          <option key={v4()} value={option.value}>
-            {option.text}
+          <option key={v4()} value={option.value || option}>
+            {option.text || option}
           </option>
         ))}
       </select>
