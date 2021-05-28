@@ -3,5 +3,5 @@
   cursor: pointer;
 }
 .active-mode {
-  color: rgb(245, 84, 84);
+  color: var(--red);
 }

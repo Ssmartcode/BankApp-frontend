@@ -9,6 +9,9 @@
 .user-info .btn {
   border-radius: 0;
 }
+.user-info .group-input {
+  margin-left: 1rem;
+}
 .user-image {
   grid-row-end: span 3;
   align-self: flex-start;
@@ -19,17 +22,6 @@
   max-height: 200px;
   border: 5px solid #333;
 }
-.upload-image {
-  background: #333;
-  cursor: pointer;
-}
-
-.user-info .group-input {
-  display: flex;
-}
-.user-info input {
-  margin: 0 1rem;
-}
-.user-info p {
+.user-image .user-info p {
   margin: 0 !important;
 }

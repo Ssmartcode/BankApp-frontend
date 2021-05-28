@@ -1,7 +1,7 @@
 const currencyMap = {
-  "Dolari Americani": "$",
-  ron: "lei",
-  Euro: "eur",
+  USD: "$",
+  RON: "lei",
+  EUR: "eur",
 };
 
 export default currencyMap;

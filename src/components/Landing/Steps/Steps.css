@@ -1,0 +1,12 @@
+#steps .card {
+  margin: 0 0.5rem;
+  transition: 1s;
+  border: 1px solid #aaa;
+}
+#steps .card:hover {
+  transform: translateY(10%);
+}
+#steps .card img {
+  width: 400px;
+  height: 350px;
+}

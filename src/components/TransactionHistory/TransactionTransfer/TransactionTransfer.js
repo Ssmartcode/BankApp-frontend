@@ -18,6 +18,7 @@ const TransactionTransfer = (props) => {
             transaction.transferType === "send" ? "text-danger" : "text-primary"
           }
         >
+          {transaction.transferType === "send" ? "-" : "+"}
           {transaction.transferAmount}
         </strong>
       </p>

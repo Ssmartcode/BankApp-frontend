@@ -59,9 +59,9 @@ const Authentication = () => {
     }
   };
   return (
-    <div className="h-100 col-12 col-lg-6 px-2 mx-auto">
+    <div className="h-100 col-12 col-lg-4 mx-auto mt-5">
       {/* SWITCHES -- LOGIN/SIGNUP */}
-      <div className="switch-mode mb-3 text-center mt-5 ">
+      <div className="switch-mode mb-3 text-center">
         <strong
           className={!isSignupMode ? "active-mode" : ""}
           onClick={handleSwitchMode}
@@ -116,7 +116,7 @@ const Authentication = () => {
             errorMessage="Parola nu este valida"
             label="Parola utilizator:"
           />
-          <button className="btn btn-primary w-100">Submit</button>
+          <button className="form-button w-100">Trimite</button>
         </form>
       )}
 
@@ -129,8 +129,8 @@ const Authentication = () => {
             onChange={setUserName}
             validators={[isRequired]}
             validationState={validationState}
-            errorMessage="Is required"
-            label="User Name:"
+            errorMessage="Introduceti un nume de utilizator"
+            label="Nume utilizator:"
           />
           <Input
             type="password"
@@ -138,15 +138,14 @@ const Authentication = () => {
             onChange={setUserPassword}
             validators={[isRequired, isPassword]}
             validationState={validationState}
-            errorMessage="Your password is not valid"
-            label="User Password:"
+            errorMessage="Parola nu este valida"
+            label="Parola:"
           />
-          <button className="btn btn-primary w-100">Submit</button>
+          <button className="form-button w-100">Trimite</button>
+          {/* loading spinner */}
+          {loading && <Spinner />}
         </form>
       )}
-
-      {/* loading spinner */}
-      {loading && <Spinner />}
 
       {/* alert with response or error from request */}
       {httpResponse ? (

@@ -3,20 +3,25 @@
   padding: 0;
   box-sizing: border-box;
 }
+:root {
+  --red: rgb(245, 84, 84);
+}
 html,
 body,
-#root,
-#root > div {
+#root {
   height: 100%;
 }
 body {
   background-color: #f4f4f4;
   background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-3.png");
 }
+.mb-6 {
+  margin-bottom: 2rem;
+}
 .modal {
-  background: #333;
+  background: #f4f4f4;
   border-radius: 5px;
-  color: #f4f4f4;
+  color: #333;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -30,4 +35,19 @@ body {
 }
 #modal {
   background: #333;
+}
+
+.form-button {
+  background: transparent;
+  color: #333;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  border: 1px solid var(--red);
+  border-radius: 5px;
+  transition: 0.5s;
+}
+
+.form-button:hover {
+  background: var(--red);
+  color: #f4f4f4;
 }

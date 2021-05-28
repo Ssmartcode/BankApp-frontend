@@ -50,9 +50,8 @@ const Input = (props) => {
       <input
         id={props.id}
         onBlur={handleOnBlur}
-        className={`form-control ${
-          !isInputValid && inputTouched ? "invalid" : ""
-        }`}
+        className={`input ${!isInputValid && inputTouched ? "invalid" : ""}`}
+        step={0.01}
         ref={inputRef}
         type={props.type}
         onChange={handleInputChange}

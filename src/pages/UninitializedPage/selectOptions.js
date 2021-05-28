@@ -3,9 +3,9 @@ const accountType = [
   { value: "business", text: "Cont Business" },
 ];
 const accountCurrency = [
-  { acr: "ron", text: "Lei" },
-  { acr: "eur", text: "Euro" },
-  { acr: "usd", text: "Dolari Americani" },
+  { value: "RON", text: "Lei" },
+  { value: "EUR", text: "Euro" },
+  { value: "USD", text: "Dolari Americani" },
 ];
 const selectOptions = { accountType, accountCurrency };
 export default selectOptions;

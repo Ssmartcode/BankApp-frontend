@@ -11,11 +11,11 @@ import AuthContext from "./context/AuthContext";
 import "./App.css";
 import Landing from "./pages/Landing/Landing";
 import TransactionsHistory from "./pages/TransactionsHistory/TransactionsHistory";
+import Footer from "./components/shared/Footer/Footer";
 
 const App = () => {
   const [token, setToken] = useState(null);
   const [userData, setUserData] = useState({});
-
   // authentication context login and logout logic
   const logIn = useCallback((token, userData) => {
     setToken(token);
@@ -50,9 +50,11 @@ const App = () => {
           <Switch>
             <Route path="/" exact>
               <Landing />
+              <Footer />
             </Route>
             <Route path="/authentication">
               <Authentication />
+              <Footer />
             </Route>
           </Switch>
           {/* if token is available render these components */}

@@ -50,8 +50,14 @@ const UserAccount = (props) => {
         </div>
         <div className="deposit col-6 py-2 bg-secondary text-light d-flex align-items-center justify-content-center">
           <span className="me-1">Sold:</span>
-          <strong>{accountInfo.accountDeposit}</strong>
-          {currencyMap[accountInfo.accountCurrency]}
+          <strong>
+            {/* format the deposit amount */}
+            {accountInfo.accountCurrency &&
+              new Intl.NumberFormat("ro-RO", {
+                style: "currency",
+                currency: accountInfo.accountCurrency,
+              }).format(accountInfo.accountDeposit)}
+          </strong>
         </div>
         <div className="transactions-history col-6 py-2">
           <Link to={`/transactions/${accountInfo._id}`}>

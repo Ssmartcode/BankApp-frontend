@@ -1,5 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Stint+Ultra+Condensed&display=swap");
+
 .showcase {
-  background: url("./showcase.jpg") center center/cover;
-  background-color: rgba(0, 0, 0, 0.5);
-  background-blend-mode: multiply;
+  background: var(--red);
+  height: 70vh !important;
+}
+.header {
+  text-transform: uppercase;
+  font-size: 4rem;
+  font-weight: 400;
+  font-family: "Stint Ultra Condensed", cursive;
+  word-spacing: 5px;
+  letter-spacing: 3px;
+}
+.btn-showcase {
+  background: transparent;
+  border: 3px solid #333;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 500;
+  padding: 1rem 2rem;
+  margin-top: 0.5rem;
+  transition: 0.5s;
+  border-radius: 5px;
+}
+.btn-showcase:hover {
+  background: #f4f4f4;
+  border: 3px solid transparent;
+  color: #333;
 }

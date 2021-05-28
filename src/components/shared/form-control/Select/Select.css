@@ -3,8 +3,13 @@
 }
 .select > * {
   padding: 0.25em;
-  border-radius: 3px;
 }
 select {
   border: 1px solid rgba(25, 25, 25, 0.3);
+  border-radius: 0 5px 5px 0;
+  color: #333 !important;
+}
+
+.select-label {
+  border-radius: 5px 0 0 5px;
 }

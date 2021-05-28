@@ -64,8 +64,7 @@ const UninitializedPage = (props) => {
       });
     }
   }, [authContext, response, httpResponse]);
-
-  // fsubmit the form and send post request
+  // submit the form and send post request
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -83,7 +82,7 @@ const UninitializedPage = (props) => {
     <div className="py-5">
       <h4>Se pare ca e pentru prima oara cand foloseti acest cont</h4>
       <h4>Haideti sa facem setarile initiale:</h4>
-      <form onSubmit={handleFormSubmit} className="mx-auto">
+      <form onSubmit={handleFormSubmit} className="mx-auto mt-5">
         <Select
           id="accountType"
           label="Tipul de cont:"
@@ -96,7 +95,7 @@ const UninitializedPage = (props) => {
           label="Moneda contului:"
           options={selectOptions.accountCurrency}
           onChange={setAccountCurrency}
-          defaultValue="ron"
+          defaultValue="RON"
         />
         {/* Card with user informations such as profile image, name, phone */}
         <UserInfo isForm imagePreview={imagePreview || previewImage}>
@@ -127,13 +126,12 @@ const UninitializedPage = (props) => {
               />
             </div>
             <ImageUpload handleImageUpload={setImage} />
+            {/* SUBMIT BUTTON */}
+            <button type="submit" className="btn btn-danger">
+              Finalizare
+            </button>
           </React.Fragment>
         </UserInfo>
-
-        {/* SUBMIT BUTTON */}
-        <button type="submit" className="btn btn-primary">
-          Finalizare
-        </button>
       </form>
 
       {/* spinner */}

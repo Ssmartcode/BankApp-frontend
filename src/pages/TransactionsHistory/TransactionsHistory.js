@@ -20,31 +20,26 @@ const TransactionsHistory = () => {
 
   useEffect(() => {
     (async () => {
-      // const response = await get("/accounts/" + accountId);
-      const response = await fetch(
-        `http://localhost:5000/accounts/${accountId}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${authContext.token}`,
-          },
-        }
-      );
-      const data = await response.json();
-      console.log(data);
-      setTransactionsHistory(data.accountData.transactionsHistory);
+      const response = await get("/accounts/" + accountId);
+
+      setTransactionsHistory(response.accountData.transactionsHistory);
     })();
   }, [get, authContext, accountId]);
   return (
     <div className="small-container mx-auto list-group">
       {loading && <Spinner />}
-
       {transactionsHistory &&
-        transactionsHistory.map((transaction) => {
-          const timeStamp = new Date(transaction.timeStamp);
-          const date = moment(timeStamp).format("DD-MM-YYYY ");
-          return <TransactionItem date={date} transaction={transaction} />;
-        })}
+        transactionsHistory
+          .sort((transaction1, transaction2) => {
+            const t1 = new Date(transaction1.timeStamp);
+            const t2 = new Date(transaction2.timeStamp);
+            return t2 - t1;
+          })
+          .map((transaction) => {
+            const timeStamp = new Date(transaction.timeStamp);
+            const date = moment(timeStamp).format("DD-MM-YYYY ");
+            return <TransactionItem date={date} transaction={transaction} />;
+          })}
     </div>
   );
 };

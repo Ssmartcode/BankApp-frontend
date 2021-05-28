@@ -3,7 +3,7 @@ import React, { useState, useContext } from "react";
 import useFetch from "use-http";
 // components
 import Select from "../../shared/form-control/Select/Select";
-import selectOptions from "../../../pages/UninitializedPage/selectOptions";
+import selectOptions from "./selectOptions";
 import Alert from "../../shared/Alert/Alert";
 import Spinner from "../../shared/Spinner/Spinner";
 import Modal from "react-modal";
@@ -75,7 +75,7 @@ const CreateAccount = () => {
             label="Moneda contului:"
             options={selectOptions.accountCurrency}
             onChange={setAccountCurrency}
-            defaultValue="ron"
+            defaultValue="RON"
           />
           <button className="btn btn-primary w-100" type="submit">
             Creeaza cont

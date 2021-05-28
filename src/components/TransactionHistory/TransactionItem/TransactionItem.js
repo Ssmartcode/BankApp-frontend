@@ -6,7 +6,6 @@ import TransactionWithdraw from "../TransactionWithdraw/TransactionWithdraw";
 
 const TransactionItem = (props) => {
   const { transaction } = props;
-  console.log(transaction);
   return (
     <div key={v4()} className="list-group-item p-0">
       <div

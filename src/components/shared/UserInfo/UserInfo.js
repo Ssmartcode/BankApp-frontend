@@ -14,12 +14,10 @@ const UserInfo = (props) => {
       {!props.isForm && (
         <React.Fragment>
           <div className="user-fullName d-flex align-items-center ps-2">
-            <p>Nume si prenume:</p>
-            <strong>{props.fullName}</strong>
+            Nume si prenume: <strong>{props.fullName}</strong>
           </div>
           <div className="user-phone d-flex align-items-center ps-2">
-            <p>Numar de telefon:</p>
-            <strong>{props.userPhone}</strong>
+            Numar de telefon: <strong>{props.userPhone}</strong>
           </div>
         </React.Fragment>
       )}

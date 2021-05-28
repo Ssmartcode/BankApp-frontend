@@ -1,14 +1,44 @@
-a {
-}
 nav {
-  background: #333;
+  background: #ccc;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
-.nav-link {
+a {
+  margin: 0 0.5rem;
+}
+.nav-item {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  text-align: center;
+}
+.link-icon {
   color: #f4f4f4 !important;
+  padding: 1rem 1.7rem;
+  font-weight: 500;
+  font-size: 1.2rem;
+  transition: 0.7s;
+}
+
+.nav-path {
+  position: absolute;
+  padding: 1rem 0;
+  top: 4px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
   font-size: 1.2rem;
   font-weight: 500;
+  color: #333;
+  transition: 0.7s;
+  transform: translateX(-200%);
 }
-.nav-link:hover {
-  color: #f4f4f4;
-  opacity: 0.8;
+.link-icon img {
+  width: 35px;
+}
+.nav-item:hover .link-icon {
+  display: inline-block;
+  transform: translateX(200%);
+}
+.nav-item:hover .nav-path {
+  transform: translateX(0);
 }

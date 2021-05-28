@@ -12,10 +12,7 @@ const ImageUpload = (props) => {
   };
 
   return (
-    <div
-      className="upload-image text-center py-2 text-light"
-      onClick={hadnleUploadClick}
-    >
+    <div className="btn bg-dark text-light h-100" onClick={hadnleUploadClick}>
       Incarca imagine
       <input
         type="file"

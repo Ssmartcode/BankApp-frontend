@@ -1,13 +1,15 @@
 import React, { useContext, useState } from "react";
+// components
 import Input from "../../shared/form-control/Input/Input";
-import useFormValidation from "../../../hooks/useFormValidation";
-import useFetch from "use-http";
-import AuthContext from "../../../context/AuthContext";
+import Alert from "../../shared/Alert/Alert";
 import Modal from "react-modal";
 import Spinner from "../../shared/Spinner/Spinner";
-import Alert from "../../shared/Alert/Alert";
+// hooks
+import useFormValidation from "../../../hooks/useFormValidation";
+import useFetch from "use-http";
+// context
+import AuthContext from "../../../context/AuthContext";
 import transferImg from "./transfer.png";
-import Select from "../../shared/form-control/Select/Select";
 
 const TransferMoney = (props) => {
   Modal.setAppElement("#modal");
@@ -39,8 +41,7 @@ const TransferMoney = (props) => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const httpResponse = await post("/accounts/transfer", {
-      accountId: props.accountId,
+    const httpResponse = await post("/accounts/transfer/" + props.accountId, {
       transferAmount,
       destinationIBAN,
     });
