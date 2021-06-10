@@ -3,7 +3,7 @@ import React from "react";
 const TransactionDeposit = (props) => {
   return (
     <p>
-      Deposit amount:{" "}
+      DSuma depozitata:{" "}
       <strong className="text-primary">+{props.depositAmount}</strong>
     </p>
   );

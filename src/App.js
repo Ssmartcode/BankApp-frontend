@@ -54,7 +54,7 @@ const App = () => {
             </Route>
             <Route path="/authentication">
               <Authentication />
-              <Footer />
+              {/* <Footer /> */}
             </Route>
           </Switch>
           {/* if token is available render these components */}

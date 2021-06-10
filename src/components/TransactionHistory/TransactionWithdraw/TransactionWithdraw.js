@@ -3,7 +3,7 @@ import React from "react";
 const TransactionWithdraw = (props) => {
   return (
     <p>
-      Withdraw amount:{" "}
+      Suma retrasa:{" "}
       <strong className="text-danger">-{props.withdrawAmount}</strong>
     </p>
   );
