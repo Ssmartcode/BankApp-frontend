@@ -52,7 +52,8 @@ const DepositMoney = (props) => {
         className="btn btn-primary w-100 rounded-0"
         onClick={handleModalOpen}
       >
-        <img src={depositImg} alt="DEPOSIT" className="button-img" /> Deposit
+        <img src={depositImg} alt="DEPOSIT" className="button-img" />{" "}
+        Depoziteaza
       </button>
       <Modal
         isOpen={modalIsOpen}

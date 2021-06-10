@@ -21,7 +21,7 @@ const TransferText = () => {
   }, [inView, animation]);
 
   return (
-    <div className="row mb-6">
+    <div className="row">
       <div className="col-12 col-lg-6">
         <motion.img
           className="presentation-image"

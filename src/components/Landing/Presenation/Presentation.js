@@ -7,7 +7,7 @@ import "./Presentation.css";
 
 const Presentaion = (props) => {
   return (
-    <section id="presentation">
+    <section id="presentation" className="py-5">
       <div className="container">
         <DataReports />
         <DepositWithdraw />
