@@ -6,6 +6,8 @@ import useFetch from "use-http";
 import Spinner from "../../components/shared/Spinner/Spinner";
 import moment from "moment";
 import TransactionItem from "../../components/TransactionHistory/TransactionItem/TransactionItem";
+import pdfImage from "./pdf.png";
+import DownloadLink from "../../components/shared/DownloadLInk/DownloadLink";
 
 const TransactionsHistory = () => {
   // context
@@ -21,12 +23,20 @@ const TransactionsHistory = () => {
   useEffect(() => {
     (async () => {
       const response = await get("/accounts/" + accountId);
-
       setTransactionsHistory(response.accountData.transactionsHistory);
     })();
   }, [get, authContext, accountId]);
   return (
     <div className="small-container mx-auto list-group">
+      <div className="list-group-item download-pdf">
+        <img src={pdfImage} alt="pdf file" />
+        <DownloadLink
+          link={`/accounts/getTransactions/${accountId}`}
+          fileName={`History-${authContext.userData.userName}-${accountId}`}
+        >
+          Descarca PDF
+        </DownloadLink>
+      </div>
       {loading && <Spinner />}
       {transactionsHistory &&
         transactionsHistory
