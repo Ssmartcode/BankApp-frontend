@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Redirect } from "react-router-dom";
 // components
 import Input from "../../components/shared/form-control/Input/Input";
 import Alert from "../../components/shared/Alert/Alert";
@@ -18,10 +19,13 @@ const Authentication = () => {
   const [userPassword, setUserPassword] = useState("");
 
   const [isSignupMode, setIsSignupMode] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [httpResponse, setHttpResponse] = useState("");
 
   const { validators, validationState, allInputsValid } = useFormValidation();
-  const { post, loading, error } = useFetch(process.env.REACT_APP_BACKEND);
+  const { post, loading, error, response } = useFetch(
+    process.env.REACT_APP_BACKEND
+  );
   const authContext = useContext(AuthContext);
 
   // input validators
@@ -48,18 +52,25 @@ const Authentication = () => {
         userPassword,
       });
       setHttpResponse(httpResponse);
+      if (response.ok) setIsSignupMode(false);
     }
     if (!isSignupMode) {
       const httpResponse = await post("/users/login", {
         userName,
         userPassword,
+        timeStamp: new Date().getTime(),
       });
       setHttpResponse(httpResponse);
       authContext.logIn(httpResponse.token, httpResponse.userData);
+      if (response.ok) {
+        setIsAuthenticated(true);
+      }
     }
   };
   return (
-    <div className="h-100 col-12 col-lg-4 mx-auto mt-5">
+    <div className="authentication h-100 col-12 col-lg-4 mx-auto mt-5">
+      {isAuthenticated && <Redirect to="/dashboard" />}
+
       {/* SWITCHES -- LOGIN/SIGNUP */}
       <div className="switch-mode mb-3 text-center">
         <strong
@@ -142,11 +153,10 @@ const Authentication = () => {
             label="Parola:"
           />
           <button className="form-button w-100">Trimite</button>
-          {/* loading spinner */}
-          {loading && <Spinner />}
         </form>
       )}
-
+      {/* loading spinner */}
+      {loading && <Spinner />}
       {/* alert with response or error from request */}
       {httpResponse ? (
         <Alert type={error ? "danger" : "success"} className="my-4">

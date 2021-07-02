@@ -70,7 +70,7 @@ const WithdrawMoney = (props) => {
             id="withdraw"
             onChange={setWithdraw}
             validators={[isGreaterThan]}
-            minValue={1}
+            minValue={0.01}
             validationState={validationState}
             errorMessage="Acest camp este necesar"
             label="Retrage din cont:"

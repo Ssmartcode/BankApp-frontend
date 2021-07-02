@@ -28,3 +28,10 @@
   border: 3px solid transparent;
   color: #333;
 }
+
+@media screen and (max-width: 600px) {
+  .showcase {
+    padding: 0 1rem;
+    text-align: center;
+  }
+}

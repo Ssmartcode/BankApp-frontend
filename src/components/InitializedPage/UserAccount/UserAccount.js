@@ -45,8 +45,10 @@ const UserAccount = (props) => {
       </div>
       <div className="account-content row  g-0">
         <div className="iban col-12 p-3">
-          <strong>IBAN: </strong>
-          {accountInfo.accountIBAN}
+          <p>
+            <strong>IBAN: </strong>
+            {accountInfo.accountIBAN}
+          </p>
         </div>
         <div className="deposit col-6 py-2 bg-secondary text-light d-flex align-items-center justify-content-center">
           <span className="me-1">Sold:</span>
@@ -61,7 +63,8 @@ const UserAccount = (props) => {
         </div>
         <div className="transactions-history col-6 py-2">
           <Link to={`/transactions/${accountInfo._id}`}>
-            <img src={transactionsHistory} alt="2 files" /> Istoric tranzactii
+            <img src={transactionsHistory} alt="2 files" />{" "}
+            <span>Istoric tranzactii</span>
           </Link>
         </div>
       </div>

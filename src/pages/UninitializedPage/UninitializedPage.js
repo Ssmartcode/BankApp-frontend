@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import selectOptions from "./selectOptions";
+import { v4 } from "uuid";
 // context
 import AuthContext from "../../context/AuthContext";
 // hoooks
@@ -12,6 +12,7 @@ import Select from "../../components/shared/form-control/Select/Select";
 import Spinner from "../../components/shared/Spinner/Spinner";
 import UserInfo from "../../components/shared/UserInfo/UserInfo";
 import ImageUpload from "../../components/shared/ImageUpload/ImageUpload";
+import selectOptions from "./selectOptions";
 // css
 import "./UninitializedPage.css";
 import previewImage from "./preview-image.jpg";
@@ -24,7 +25,7 @@ const UninitializedPage = (props) => {
   const [accountType, setAccountType] = useState("");
   const [accountCurrency, setAccountCurrency] = useState("");
 
-  const { validators, validationState } = useFormValidation();
+  const { validators, validationState, allInputsValid } = useFormValidation();
 
   // input validators
   const { isRequired } = validators;
@@ -44,6 +45,7 @@ const UninitializedPage = (props) => {
     }
   );
 
+  console.log(authContext.userData);
   // set image preview
   useEffect(() => {
     if (!image) return;
@@ -56,14 +58,15 @@ const UninitializedPage = (props) => {
 
   // set initialization to true and switch to initialization page whe isn response from server is ok
   useEffect(() => {
-    if (response.ok) {
+    if (response.ok && !loading) {
       // set isInitialized to true and update auth context to reflect the changes
       authContext.logIn(authContext.token, {
         ...authContext.userData,
         isInitialized: true,
       });
     }
-  }, [authContext, response, httpResponse]);
+  }, [authContext, response, httpResponse, loading]);
+
   // submit the form and send post request
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -75,11 +78,18 @@ const UninitializedPage = (props) => {
     formData.append("accountCurrency", accountCurrency);
     formData.append("image", image);
 
-    const httpResponse = await post("/users/initialization", formData);
-    setHttpResponse(httpResponse);
+    if (allInputsValid(validationState.current)) {
+      // append random string to end of route to avoid cached response from server
+      const httpResponse = await post(
+        "/users/initialization/" + v4(),
+        formData
+      );
+      console.log(httpResponse);
+      setHttpResponse(httpResponse);
+    }
   };
   return (
-    <div className="py-5">
+    <div className="py-5 px-2">
       <h4>Se pare ca e pentru prima oara cand foloseti acest cont</h4>
       <h4>Haideti sa facem setarile initiale:</h4>
       <form onSubmit={handleFormSubmit} className="mx-auto mt-5">
@@ -98,7 +108,11 @@ const UninitializedPage = (props) => {
           defaultValue="RON"
         />
         {/* Card with user informations such as profile image, name, phone */}
-        <UserInfo isForm imagePreview={imagePreview || previewImage}>
+        <UserInfo
+          userEmail={authContext.userData.userEmail}
+          isForm
+          imagePreview={imagePreview || previewImage}
+        >
           {/* If inputs are needed send them as children */}
           <React.Fragment>
             <div className="user-fullName d-flex align-items-center ps-2">

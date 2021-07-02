@@ -5,3 +5,8 @@
 .active-mode {
   color: var(--red);
 }
+@media screen and (max-width: 600px) {
+  .authentication {
+    padding: 0 1rem;
+  }
+}

@@ -45,7 +45,7 @@ const InitializedPage = () => {
             image={`${process.env.REACT_APP_BACKEND}/uploads/images/${userData.userImage}`}
           />
 
-          {/* map through all the user accounts */}
+          {/* map through all the user's accounts */}
           <div className="user-accounts row justify-content-center">
             {userData.userAccounts &&
               userData.userAccounts.map((account) => (

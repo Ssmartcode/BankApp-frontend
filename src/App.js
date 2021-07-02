@@ -13,34 +13,51 @@ import Landing from "./pages/Landing/Landing";
 import TransactionsHistory from "./pages/TransactionsHistory/TransactionsHistory";
 import Footer from "./components/shared/Footer/Footer";
 
+let tokenTimeout;
 const App = () => {
   const [token, setToken] = useState(null);
   const [userData, setUserData] = useState({});
+  const [tokenExpire, setTokenExpire] = useState();
+
   // authentication context login and logout logic
-  const logIn = useCallback((token, userData) => {
+  const logIn = useCallback((token, userData, tokenExpire) => {
+    const expirationDate =
+      tokenExpire || new Date(new Date().getTime() + 1000 * 60 * 30);
+    setTokenExpire(expirationDate);
     setToken(token);
     setUserData(userData);
-    localStorage.setItem("token", token);
-    localStorage.setItem("userData", JSON.stringify(userData));
+    if (userData) {
+      localStorage.setItem("token", token);
+      localStorage.setItem("tokenExpire", expirationDate.toISOString());
+      localStorage.setItem("userData", JSON.stringify(userData));
+    }
   }, []);
 
   const logOut = useCallback(() => {
     setToken(null);
     setUserData({});
+    setTokenExpire(null);
     localStorage.removeItem("token");
+    localStorage.removeItem("tokenExpire");
     localStorage.removeItem("userData");
   }, []);
 
   // get token and user data from local storage
   useEffect(() => {
-    let token;
-    let userData;
-    try {
-      token = localStorage.getItem("token");
-      userData = JSON.parse(localStorage.getItem("userData"));
-    } catch (err) {}
-    if (token && userData) logIn(token, userData);
+    const token = localStorage.getItem("token");
+    const tokenExpire = localStorage.getItem("tokenExpire");
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    if (token && userData && new Date(tokenExpire) > new Date())
+      logIn(token, userData, new Date(tokenExpire));
   }, [logIn]);
+
+  // logout when time expires
+  useEffect(() => {
+    if (token && tokenExpire) {
+      const timeRemaining = tokenExpire.getTime() - new Date().getTime();
+      tokenTimeout = setTimeout(logOut, timeRemaining);
+    } else clearTimeout(tokenTimeout);
+  }, [token, tokenExpire, logOut]);
 
   return (
     <React.Fragment>

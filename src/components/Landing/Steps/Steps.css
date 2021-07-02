@@ -11,3 +11,22 @@
   width: 100%;
   height: 300px;
 }
+
+@media screen and (max-width: 600px) {
+  #steps {
+    transform: none !important;
+    padding: 0 1rem;
+    margin: 0 !important;
+  }
+  #steps .cards {
+    flex-direction: column;
+  }
+  #steps .card {
+    margin: 1rem 0;
+    pointer-events: none;
+  }
+  #steps .card img {
+    width: 100%;
+    height: 200px;
+  }
+}

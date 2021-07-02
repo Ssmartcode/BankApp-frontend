@@ -7,18 +7,18 @@ const UserInfo = (props) => {
       <div className="user-image">
         <img src={props.imagePreview || props.image || ""} alt="User" />
       </div>
-      <div className="user-userEmail ps-2">
+      <p className="user-userEmail ps-2">
         Email address: <strong>{props.userEmail}</strong>
-      </div>
+      </p>
       {props.isForm && props.children}
       {!props.isForm && (
         <React.Fragment>
-          <div className="user-fullName d-flex align-items-center ps-2">
+          <p className="user-fullName d-flex align-items-center ps-2">
             Nume si prenume: <strong>{props.fullName}</strong>
-          </div>
-          <div className="user-phone d-flex align-items-center ps-2">
+          </p>
+          <p className="user-phone d-flex align-items-center ps-2">
             Numar de telefon: <strong>{props.userPhone}</strong>
-          </div>
+          </p>
         </React.Fragment>
       )}
     </div>
