@@ -14,17 +14,17 @@ const Showcase = () => {
         transition={{ duration: 1.3 }}
         className="header text-light"
       >
-        Aplicatie Bancara - RZV Bank
+        Bank Application - RZV Bank
       </motion.h1>
       <p></p>
       {!authContext.token && (
         <Link to="/authentication">
-          <button className="btn-showcase">Vreau un cont!</button>
+          <button className="btn-showcase">Create an account!</button>
         </Link>
       )}
       {authContext.token && (
         <Link to="/dashboard">
-          <button className="btn-showcase">Catre contul meu!</button>
+          <button className="btn-showcase">My account!</button>
         </Link>
       )}
     </div>

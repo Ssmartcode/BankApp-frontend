@@ -7,7 +7,7 @@ import dataReportImg from "./data_report.svg";
 import imageAnimation from "../animations/imageAnimation";
 
 const dataReportsSentence =
-  "Ai la dispozitie, in orice moment, un istoric al tranzactiilor";
+  "You can check your transaction history at any given moment.";
 
 const DataReportsText = () => {
   const { ref, inView } = useInView({

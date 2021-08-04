@@ -2,24 +2,28 @@ import React from "react";
 
 const TransactionTransfer = (props) => {
   const { transaction } = props;
+  const transferAmount = new Intl.NumberFormat("ro-RO", {
+    style: "currency",
+    currency: transaction.currency,
+  }).format(transaction.transferAmount);
 
   return (
     <React.Fragment>
       <p>
         Transfer{" "}
         {transaction.transferType === "send"
-          ? `catre: ${transaction.destinationIBAN}`
-          : `de la: ${transaction.senderIBAN}`}
+          ? `to: ${transaction.destinationIBAN}`
+          : `from: ${transaction.senderIBAN}`}
       </p>
       <p>
-        Suma transferata:{" "}
+        Amount Transferred:{" "}
         <strong
           className={
             transaction.transferType === "send" ? "text-danger" : "text-primary"
           }
         >
           {transaction.transferType === "send" ? "-" : "+"}
-          {transaction.transferAmount}
+          {transferAmount}
         </strong>
       </p>
     </React.Fragment>

@@ -59,7 +59,7 @@ const TransferMoney = (props) => {
         onClick={handleModalOpen}
       >
         <img src={transferImg} alt="" className="button-img" />
-        Transfera
+        Transfer
       </button>
       <Modal
         isOpen={modalIsOpen}
@@ -69,12 +69,12 @@ const TransferMoney = (props) => {
         style={{ overlay: { background: "rgba(0,0,0,0.5)" } }}
       >
         <form className="text-center" onSubmit={handleFormSubmit}>
-          <h2>Transfera suma catre un alt cont:</h2>
+          <h2 className="mb-3">Transfer to another account:</h2>
           <fieldset disabled>
             <input
               type="text"
               className="form-control mb-2 text-center"
-              value={`Din contul: ${props.accountIBAN}`}
+              value={`From: ${props.accountIBAN}`}
             />
           </fieldset>
           <Input
@@ -82,10 +82,10 @@ const TransferMoney = (props) => {
             id="transferAmount"
             onChange={setTransferAmount}
             validators={[isGreaterThan]}
-            minValue={1}
+            minValue={0.01}
             validationState={validationState}
-            errorMessage="Acest camp este necesar"
-            label="Transfera suma:"
+            errorMessage="You can't leave this empty"
+            label="Transfer:"
           />
           <Input
             type="text"
@@ -93,8 +93,8 @@ const TransferMoney = (props) => {
             onChange={setDestinationIBAN}
             validators={[isRequired]}
             validationState={validationState}
-            errorMessage="Acest camp este necesar"
-            label="IBAN destinatar:"
+            errorMessage="You can't leave this empty"
+            label="Reciever's IBAN:"
           />
           <button className="btn btn-primary mt-3 w-100" type="submit">
             Transfer

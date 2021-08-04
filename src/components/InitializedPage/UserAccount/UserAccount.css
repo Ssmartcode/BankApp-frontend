@@ -8,6 +8,7 @@
 .title {
   padding: 1rem 0;
   font-size: 1.2rem;
+  text-transform: capitalize;
 }
 .bg-standard {
   background: rgb(209, 202, 121);

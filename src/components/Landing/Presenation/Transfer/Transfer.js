@@ -12,7 +12,7 @@ const TransferText = () => {
   const animation = useAnimation();
 
   const transferSentence =
-    "  Transfera Banii rapid si simplu in orice cont, fara comision si timpi mari de asteptare.";
+    "Transfer your many from one acount to the other, quick, without any fee.";
 
   useEffect(() => {
     if (inView) {

@@ -15,16 +15,25 @@ const TransactionItem = (props) => {
       </div>
       <div className="transaction-body p-3">
         {transaction.type === "deposit" && (
-          <TransactionDeposit depositAmount={transaction.depositAmount} />
+          <TransactionDeposit
+            depositAmount={transaction.depositAmount}
+            currency={transaction.currency}
+          />
         )}
         {transaction.type === "withdraw" && (
-          <TransactionWithdraw withdrawAmount={transaction.withdrawAmount} />
+          <TransactionWithdraw
+            withdrawAmount={transaction.withdrawAmount}
+            currency={transaction.currency}
+          />
         )}
         {transaction.type === "transfer" && (
-          <TransactionTransfer transaction={transaction} />
+          <TransactionTransfer
+            transaction={transaction}
+            currency={transaction.currency}
+          />
         )}
         <div className="time-stamp pt-2">
-          Ati efectuat tranzactia in data de: <strong>{props.date}</strong>
+          Transaction date: <strong>{props.date}</strong>
         </div>
       </div>
     </div>

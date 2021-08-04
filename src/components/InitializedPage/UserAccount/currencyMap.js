@@ -1,6 +1,6 @@
 const currencyMap = {
   USD: "$",
-  RON: "lei",
+  RON: "ron",
   EUR: "eur",
 };
 

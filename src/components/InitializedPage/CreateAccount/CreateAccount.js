@@ -53,7 +53,7 @@ const CreateAccount = () => {
     <div className="py-4">
       <button className="btn btn-secondary" onClick={handleModalOpen}>
         <img src={newAccountImg} alt="" className="button-img" />
-        Deschide un cont nou
+        Open new account
       </button>
       <Modal
         isOpen={modalIsOpen}
@@ -65,20 +65,20 @@ const CreateAccount = () => {
         <form onSubmit={handleFormSubmit}>
           <Select
             id="accountType"
-            label="Tipul de cont:"
+            label="Account Type:"
             options={selectOptions.accountType}
             onChange={setAccountType}
             defaultValue="standard"
           />
           <Select
             id="accountCurrency"
-            label="Moneda contului:"
+            label="Account Currency:"
             options={selectOptions.accountCurrency}
             onChange={setAccountCurrency}
             defaultValue="RON"
           />
           <button className="btn btn-primary w-100" type="submit">
-            Creeaza cont
+            Create
           </button>
         </form>
         {/* display error if any */}

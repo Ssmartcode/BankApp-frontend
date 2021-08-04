@@ -48,10 +48,10 @@ const DeleteAccount = (props) => {
         className="modal"
         style={{ overlay: { background: "rgba(0,0,0,0.5)" } }}
       >
-        <h2>Stergerea contului va fi permanenta, doriti sa continuati?</h2>
+        <h2>Are you sure you want to delete your account?</h2>
         <form onSubmit={handleFormSubmit}>
           <button className="btn btn-danger" type="submit">
-            Sterge cont
+            Delete account
           </button>
         </form>
         {loading && <Spinner />}

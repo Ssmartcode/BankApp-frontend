@@ -38,13 +38,13 @@ const DepositMoney = (props) => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const httpResponse = await post("/accounts/deposit/" + props.accountId, {
+
+    await post("/accounts/deposit/" + props.accountId, {
       depositAmount: deposit,
     });
     if (response.ok) {
       e.target.submit();
     }
-    setHttpResponse(httpResponse.message);
   };
   return (
     <div className="col-6 col-lg-4">
@@ -52,8 +52,7 @@ const DepositMoney = (props) => {
         className="btn btn-primary w-100 rounded-0"
         onClick={handleModalOpen}
       >
-        <img src={depositImg} alt="DEPOSIT" className="button-img" />{" "}
-        Depoziteaza
+        <img src={depositImg} alt="DEPOSIT" className="button-img" /> Deposit
       </button>
       <Modal
         isOpen={modalIsOpen}
@@ -63,19 +62,19 @@ const DepositMoney = (props) => {
         style={{ overlay: { background: "rgba(0,0,0,0.5)" } }}
       >
         <form className="text-center" onSubmit={handleFormSubmit}>
-          <h2>Adauga in cont:</h2>
+          <h2 className="mb-3">Add to your account:</h2>
           <Input
             type="number"
             id="userAge"
             onChange={setDeposit}
             validators={[isGreaterThan]}
-            minValue={1}
+            minValue={0.01}
             validationState={validationState}
-            errorMessage="Acest camp este necesar"
-            label="Adauga in cont:"
+            errorMessage="You can't leave this empty"
+            label="Add:"
           />
           <button className="btn btn-primary mt-3 w-100" type="submit">
-            Adauga
+            Add
           </button>
           {/* spinner */}
           {loading && <Spinner />}

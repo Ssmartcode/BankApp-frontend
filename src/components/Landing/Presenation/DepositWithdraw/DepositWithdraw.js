@@ -7,7 +7,7 @@ import imageAnimation from "../animations/imageAnimation";
 import walletImg from "./wallet.svg";
 
 const depositSentence =
-  " Incarca banii in cont, si retrage instant fara comison. Ai la dispozitie 3 monede: Dolari Americani, Euro si Lei si 2 tipuri de cont: Standard si Business";
+  " Charge your account and withdraw without any fee. You have 3 currencies: EUR, USD and RON and 2 packages for your accounts: Business and Standard.";
 const DepositWithdrawText = () => {
   const { ref, inView } = useInView({
     threshold: 0.5,

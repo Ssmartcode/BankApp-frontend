@@ -21,9 +21,9 @@ const Steps = () => {
       style={{ marginBottom: -(sectionHeight / 2) }} //remove white space created after using translate on this section
     >
       <div className="container d-flex cards">
-        <Card img={step1} cardTitle="1. Creeaza un cont"></Card>
-        <Card img={step2} cardTitle="2. Completeaza setarile initiale"></Card>
-        <Card img={step3} cardTitle="3. Acum ai acces la conturile tale"></Card>
+        <Card img={step1} cardTitle="1. Create an account"></Card>
+        <Card img={step2} cardTitle="2. Initial set up"></Card>
+        <Card img={step3} cardTitle="3. Now you can use your account"></Card>
       </div>
     </motion.section>
   );

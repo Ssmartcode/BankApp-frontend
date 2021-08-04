@@ -54,7 +54,7 @@ const WithdrawMoney = (props) => {
         onClick={handleModalOpen}
       >
         <img src={withdrawImg} alt="" className="button-img" />
-        Retrage
+        Withdraw
       </button>
       <Modal
         isOpen={modalIsOpen}
@@ -64,7 +64,7 @@ const WithdrawMoney = (props) => {
         style={{ overlay: { background: "rgba(0,0,0,0.5)" } }}
       >
         <form className="text-center" onSubmit={handleFormSubmit}>
-          <h2>Retrage din cont:</h2>
+          <h2 className="mb-3">Withdraw from your account:</h2>
           <Input
             type="number"
             id="withdraw"
@@ -72,11 +72,11 @@ const WithdrawMoney = (props) => {
             validators={[isGreaterThan]}
             minValue={0.01}
             validationState={validationState}
-            errorMessage="Acest camp este necesar"
-            label="Retrage din cont:"
+            errorMessage="You can't leave this empty"
+            label="Withdraw:"
           />
           <button className="btn btn-warning mt-3 w-100" type="submit">
-            Retrage
+            Withdraw
           </button>
           {loading && <Spinner />}
           {error && <Alert className="mt-4">{httpResponse}</Alert>}

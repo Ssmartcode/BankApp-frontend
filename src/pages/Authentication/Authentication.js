@@ -29,7 +29,8 @@ const Authentication = () => {
   const authContext = useContext(AuthContext);
 
   // input validators
-  const { isRequired, isPassword, isEmail } = validators;
+  const { isRequired, isPassword, isEmail, isMinLength, isGreaterThan } =
+    validators;
 
   // swtich mode handler
   const handleSwitchMode = () => {
@@ -77,14 +78,14 @@ const Authentication = () => {
           className={!isSignupMode ? "active-mode" : ""}
           onClick={handleSwitchMode}
         >
-          Autentificare
+          LogIn
         </strong>
         /
         <strong
           className={isSignupMode ? "active-mode" : ""}
           onClick={handleSwitchMode}
         >
-          Inregistrare
+          Register
         </strong>
       </div>
 
@@ -95,10 +96,11 @@ const Authentication = () => {
             type="text"
             id="userName"
             onChange={setUserName}
-            validators={[isRequired]}
+            validators={[isMinLength]}
             validationState={validationState}
-            errorMessage="Acest camp este necesar"
-            label="Nume utilizator"
+            minLength={3}
+            errorMessage="Your user name should have at least 3 characters"
+            label="User Name:"
           />
           <Input
             type="text"
@@ -106,17 +108,18 @@ const Authentication = () => {
             onChange={setUserEmail}
             validators={[isRequired, isEmail]}
             validationState={validationState}
-            errorMessage="Adresa de e-mail nu este valida"
-            label="Adresa de e-mail:"
+            errorMessage="Your e-mail address is invalid"
+            label="E-mail"
           />
           <Input
             type="number"
             id="userAge"
             onChange={setUserAge}
-            validators={[isRequired]}
+            validators={[isGreaterThan]}
+            minValue={18}
             validationState={validationState}
-            errorMessage="Acest camp este necesar"
-            label="Varsta utilizator:"
+            errorMessage="You must be 18 years of age or older"
+            label="Age:"
           />
           <Input
             type="password"
@@ -124,10 +127,10 @@ const Authentication = () => {
             onChange={setUserPassword}
             validators={[isRequired, isPassword]}
             validationState={validationState}
-            errorMessage="Parola nu este valida"
-            label="Parola utilizator:"
+            errorMessage="Password not valid"
+            label="Password:"
           />
-          <button className="form-button w-100">Trimite</button>
+          <button className="form-button w-100">Send</button>
         </form>
       )}
 
@@ -140,8 +143,8 @@ const Authentication = () => {
             onChange={setUserName}
             validators={[isRequired]}
             validationState={validationState}
-            errorMessage="Introduceti un nume de utilizator"
-            label="Nume utilizator:"
+            errorMessage="User Name is required"
+            label="User Name:"
           />
           <Input
             type="password"
@@ -149,10 +152,10 @@ const Authentication = () => {
             onChange={setUserPassword}
             validators={[isRequired, isPassword]}
             validationState={validationState}
-            errorMessage="Parola nu este valida"
-            label="Parola:"
+            errorMessage="Password not valid"
+            label="Passowrd:"
           />
-          <button className="form-button w-100">Trimite</button>
+          <button className="form-button w-100">Send</button>
         </form>
       )}
       {/* loading spinner */}

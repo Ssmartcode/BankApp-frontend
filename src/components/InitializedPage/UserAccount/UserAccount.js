@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 // components
 import Spinner from "../../shared/Spinner/Spinner";
-import currencyMap from "./currencyMap";
 import DepositMoney from "../DepositMoney/DepositMoney";
 import TransferMoney from "../TransferMoney/TransferMoney";
 // hooks
@@ -41,7 +40,7 @@ const UserAccount = (props) => {
           accountInfo.accountType === "standard" ? "bg-standard" : "bg-business"
         }`}
       >
-        Cont {accountInfo.accountType}
+        {accountInfo.accountType} account
       </div>
       <div className="account-content row  g-0">
         <div className="iban col-12 p-3">
@@ -51,7 +50,7 @@ const UserAccount = (props) => {
           </p>
         </div>
         <div className="deposit col-6 py-2 bg-secondary text-light d-flex align-items-center justify-content-center">
-          <span className="me-1">Sold:</span>
+          <span className="me-1">Sum:</span>
           <strong>
             {/* format the deposit amount */}
             {accountInfo.accountCurrency &&
@@ -64,7 +63,7 @@ const UserAccount = (props) => {
         <div className="transactions-history col-6 py-2">
           <Link to={`/transactions/${accountInfo._id}`}>
             <img src={transactionsHistory} alt="2 files" />{" "}
-            <span>Istoric tranzactii</span>
+            <span>Tranzaction History</span>
           </Link>
         </div>
       </div>

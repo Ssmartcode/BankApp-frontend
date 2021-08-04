@@ -21,9 +21,10 @@ const Header = () => {
           <div className="link-icon">
             <img src={landingPage} alt="" />
           </div>
-          <div className="nav-path">Acasa</div>
+          <div className="nav-path">Home</div>
         </div>
       </Link>
+
       {/* if user is logged in */}
       {authContext.token && (
         <React.Fragment>
@@ -32,7 +33,7 @@ const Header = () => {
               <div className="link-icon">
                 <img src={panel} alt="" />
               </div>
-              <div className="nav-path">Panou</div>
+              <div className="nav-path">Panel</div>
             </div>
           </Link>
           <div

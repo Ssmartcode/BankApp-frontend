@@ -34,7 +34,7 @@ const TransactionsHistory = () => {
           link={`/accounts/getTransactions/${accountId}`}
           fileName={`History-${authContext.userData.userName}-${accountId}`}
         >
-          Descarca PDF
+          Download PDF
         </DownloadLink>
       </div>
       {loading && <Spinner />}

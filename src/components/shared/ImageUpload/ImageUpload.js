@@ -13,7 +13,7 @@ const ImageUpload = (props) => {
 
   return (
     <div className="btn bg-dark text-light h-100" onClick={hadnleUploadClick}>
-      Incarca imagine
+      Upload image
       <input
         type="file"
         id="image"

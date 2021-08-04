@@ -28,10 +28,10 @@ const Footer = () => {
               <h5>Start using our app</h5>
               <div className="links">
                 <div className="link-item mb-2">
-                  <Link to="/authentication">Creaza un cont nou</Link>
+                  <Link to="/authentication">Create a new account</Link>
                 </div>
                 <div className="link-item">
-                  <Link to="/dashboard ">Panou de control</Link>
+                  <Link to="/dashboard ">Control Panel</Link>
                 </div>
               </div>
             </div>

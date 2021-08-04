@@ -28,7 +28,7 @@ const UninitializedPage = (props) => {
   const { validators, validationState, allInputsValid } = useFormValidation();
 
   // input validators
-  const { isRequired } = validators;
+  const { isRequired, isGreaterThan } = validators;
 
   const [httpResponse, setHttpResponse] = useState("");
 
@@ -90,19 +90,19 @@ const UninitializedPage = (props) => {
   };
   return (
     <div className="py-5 px-2">
-      <h4>Se pare ca e pentru prima oara cand foloseti acest cont</h4>
-      <h4>Haideti sa facem setarile initiale:</h4>
+      <h4>This is your first time using this account</h4>
+      <h4>Let's begin our initialization</h4>
       <form onSubmit={handleFormSubmit} className="mx-auto mt-5">
         <Select
           id="accountType"
-          label="Tipul de cont:"
+          label="Account type:"
           options={selectOptions.accountType}
           onChange={setAccountType}
           defaultValue="standard"
         />
         <Select
           id="accountCurrency"
-          label="Moneda contului:"
+          label="Account currency:"
           options={selectOptions.accountCurrency}
           onChange={setAccountCurrency}
           defaultValue="RON"
@@ -116,33 +116,34 @@ const UninitializedPage = (props) => {
           {/* If inputs are needed send them as children */}
           <React.Fragment>
             <div className="user-fullName d-flex align-items-center ps-2">
-              <p>Nume si Prenume:</p>
+              <p>Full Name:</p>
               <Input
                 type="text"
                 id="fullName"
                 onChange={setFullName}
                 validators={[isRequired]}
                 validationState={validationState}
-                errorMessage="Introdu nume si prenume"
-                label="Nume si Prenume"
+                errorMessage="Your Full Name is required"
+                label="Full Name"
               />
             </div>
             <div className="user-phone d-flex align-items-center ps-2">
-              <p>Numar de telefon:</p>
+              <p>Phone number:</p>
               <Input
                 type="number"
                 id="userPhone"
                 onChange={setPhone}
-                validators={[isRequired]}
+                validators={[isGreaterThan]}
+                minValue={99999999}
                 validationState={validationState}
-                errorMessage="Numarul de telefon nu este valid"
-                label="Numar de telefon"
+                errorMessage="Your phone number is invalid"
+                label="Phone number:"
               />
             </div>
             <ImageUpload handleImageUpload={setImage} />
             {/* SUBMIT BUTTON */}
             <button type="submit" className="btn btn-danger">
-              Finalizare
+              Send
             </button>
           </React.Fragment>
         </UserInfo>

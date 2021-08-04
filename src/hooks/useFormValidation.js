@@ -5,8 +5,7 @@ const validators = {
     return input.length > 0;
   },
   isPassword: function (input) {
-    // const passwordPattern = /[A-Z].*\d|\d.*[A-Z]/.test(input);
-    const passwordPattern = true;
+    const passwordPattern = /[A-Z].*\d|\d.*[A-Z]/.test(input);
     return input.length > 0 && passwordPattern;
   },
   isEmail: function (input) {
@@ -21,7 +20,7 @@ const validators = {
     return input.length <= args.maxLength;
   },
   isGreaterThan: function (input, args) {
-    return input > args.minValue;
+    return input >= args.minValue;
   },
 };
 

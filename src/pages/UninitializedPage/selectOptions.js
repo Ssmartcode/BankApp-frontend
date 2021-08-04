@@ -1,11 +1,11 @@
 const accountType = [
-  { value: "standard", text: "Cont Standard" },
-  { value: "business", text: "Cont Business" },
+  { value: "standard", text: "Standard" },
+  { value: "business", text: "Business" },
 ];
 const accountCurrency = [
-  { value: "RON", text: "Lei" },
+  { value: "RON", text: "Ron" },
   { value: "EUR", text: "Euro" },
-  { value: "USD", text: "Dolari Americani" },
+  { value: "USD", text: "US Dollars" },
 ];
 const selectOptions = { accountType, accountCurrency };
 export default selectOptions;
